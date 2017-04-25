@@ -35,6 +35,9 @@ public:
   ///* time when the state is true, in us
   long long time_us_;
 
+  ///* timestamp from previous measurement
+  long previous_timestamp_;
+
   ///* Process noise standard deviation longitudinal acceleration in m/s^2
   double std_a_;
 
@@ -64,6 +67,9 @@ public:
 
   ///* Augmented state dimension
   int n_aug_;
+
+  ///* Measurement dimension
+  int n_z_;
 
   ///* Number of sigma points
   int n_sigma_;
@@ -111,6 +117,13 @@ public:
    * @param meas_package The measurement at k+1
    */
   void UpdateRadar(MeasurementPackage meas_package);
+
+private:
+  Eigen::MatrixXd GenerateSigmaPoints(void);
+  Eigen::MatrixXd PredictSigmaPoints(Eigen::MatrixXd Xsig_aug, double delta_t);
+  void PredictStateMean(void);
+  void PredictStateCovariance(void);
+  void PredictRadarMeasurement(void);
 };
 
 #endif /* UKF_H */
