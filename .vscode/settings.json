@@ -2,6 +2,7 @@
 {
     "files.associations": {
         "ostream": "cpp",
-        "complex": "cpp"
+        "complex": "cpp",
+        "functional": "cpp"
     }
 }
