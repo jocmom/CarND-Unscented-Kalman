@@ -32,6 +32,15 @@ public:
   ///* predicted sigma points matrix
   MatrixXd Xsig_pred_;
 
+  ///* predicted sigma points matrix in measurement space
+  MatrixXd Zsig_;
+
+  ///* predicted mean vector in measurement space
+  VectorXd z_pred_;
+
+  ///* measurement noise covariance matrix S
+  MatrixXd S_;
+
   ///* time when the state is true, in us
   long long time_us_;
 
