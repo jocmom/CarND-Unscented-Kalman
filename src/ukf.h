@@ -127,7 +127,7 @@ public:
    */
   void UpdateRadar(MeasurementPackage meas_package);
 
-private:
+//private:
   Eigen::MatrixXd GenerateSigmaPoints(void);
   Eigen::MatrixXd PredictSigmaPoints(Eigen::MatrixXd Xsig_aug, double delta_t);
   void PredictStateMean(void);
