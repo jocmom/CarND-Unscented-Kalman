@@ -30,6 +30,6 @@ TEST_CASE( "generate sigma points", "[GenerateSigmaPoints]" ) {
           -0.0020,    0.0060,    0.0008,    0.0100,    0.0123;
 
   MatrixXd Xsig_aug = ukf.GenerateSigmaPoints();
-  REQUIRE(ukf.x_[0] == 0.0);
+  REQUIRE(Xsig_aug(0, 0) == 5.7441);
     
 }
