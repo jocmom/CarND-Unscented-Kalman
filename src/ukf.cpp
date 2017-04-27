@@ -182,7 +182,6 @@ Eigen::MatrixXd UKF::GenerateSigmaPoints() {
   for(int i=n_x_; i<n_aug_; ++i) {
     x_aug(i) = 0;  
   }
-  cout << "x_aug" << endl << x_aug << endl;
   //create augmented covariance matrix
   P_aug.fill(0.0);
   P_aug.topLeftCorner(n_x_,n_x_) = P_;
