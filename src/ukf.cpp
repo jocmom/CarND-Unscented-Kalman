@@ -168,6 +168,7 @@ void UKF::ProcessMeasurement(MeasurementPackage measurement_pack) {
 	double dt = (measurement_pack.timestamp_ - previous_timestamp_) / 1000000.0;
 	previous_timestamp_ = measurement_pack.timestamp_;
   Prediction(dt);
+  UpdateRadar(measurement_pack);
 }
 
 Eigen::MatrixXd UKF::GenerateSigmaPoints() {
@@ -345,7 +346,6 @@ void UKF::Prediction(double delta_t) {
   PredictStateMean();
   PredictStateCovariance();
   PredictRadarMeasurement();
-    
 }
 
 /**
@@ -376,6 +376,7 @@ void UKF::UpdateRadar(MeasurementPackage meas_package) {
 
   You'll also need to calculate the radar NIS.
   */  
+  assert(meas_package.raw_measurements_.size() == 3);
   VectorXd z = VectorXd(n_z_);
   z << meas_package.raw_measurements_[0], 
     meas_package.raw_measurements_[1], 
