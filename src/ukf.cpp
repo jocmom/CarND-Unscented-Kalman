@@ -83,13 +83,13 @@ UKF::UKF() {
   Xsig_pred_ = MatrixXd(n_x_, n_sigma_);
 
   // predicted sigma points matrix in measurement space
-  MatrixXd Zsig_ = MatrixXd(n_z_, n_z_);
+  Zsig_ = MatrixXd(n_z_, n_sigma_);
 
   // predicted mean vector in measurement space
-  VectorXd z_pred_ = VectorXd(n_z_);
+  z_pred_ = VectorXd(n_z_);
 
   //measurement covariance matrix S
-  MatrixXd S = MatrixXd(n_z_, n_z_);
+  S_ = MatrixXd(n_z_, n_z_);
 
   // Weights of sigma points
   weights_ = VectorXd(n_sigma_);
@@ -282,7 +282,7 @@ void UKF::PredictStateCovariance() {
   }
 }
 
-void UKF::PredictRadarMeasurement() {
+void UKF::PredictRadarMeasurement() {  
   //transform sigma points into measurement space
   for (int i = 0; i < n_sigma_; i++) {  //2n+1 simga points
 
