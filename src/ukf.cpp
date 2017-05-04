@@ -34,7 +34,7 @@ UKF::UKF() {
   // Remember from the "CTRV Process Noise Vector" lecture that the linear
   // acceleration is being modeled as a Gaussian distribution with mean 
   // zero and standard deviation σ​a​​. In a Gaussian distribution, 
-  // about 95% of your values are within 2*std_aa​​ (lesson 31).
+  // about 95% of your values are within 2*std_a​​ (lesson 30).
   std_a_ = 1.;
 
   // Process noise standard deviation yaw acceleration in rad/s^2
