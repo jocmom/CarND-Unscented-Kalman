@@ -33,13 +33,22 @@ public:
   MatrixXd Xsig_pred_;
 
   ///* predicted sigma points matrix in measurement space
-  MatrixXd Zsig_;
+  MatrixXd Zsig_radar_;
+
+  ///* predicted sigma points matrix in measurement space
+  MatrixXd Zsig_laser_;
 
   ///* predicted mean vector in measurement space
-  VectorXd z_pred_;
+  VectorXd z_pred_radar_;
+
+  ///* predicted mean vector in measurement space
+  VectorXd z_pred_laser_;
 
   ///* measurement noise covariance matrix S
-  MatrixXd S_;
+  MatrixXd S_radar_;
+
+  ///* measurement noise covariance matrix S
+  MatrixXd S_laser_;
 
   ///* time when the state is true, in us
   long long time_us_;
@@ -78,7 +87,10 @@ public:
   int n_aug_;
 
   ///* Measurement dimension
-  int n_z_;
+  int n_z_radar_;
+
+  ///* Measurement dimension
+  int n_z_laser_;
 
   ///* Number of sigma points
   int n_sigma_;
@@ -127,12 +139,12 @@ public:
    */
   void UpdateRadar(MeasurementPackage meas_package);
 
-//private:
   Eigen::MatrixXd GenerateSigmaPoints(void);
   Eigen::MatrixXd PredictSigmaPoints(Eigen::MatrixXd Xsig_aug, double delta_t);
   void PredictStateMean(void);
   void PredictStateCovariance(void);
   void PredictRadarMeasurement(void);
+  void PredictLaserMeasurement(void);
 };
 
 #endif /* UKF_H */
