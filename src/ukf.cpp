@@ -22,19 +22,23 @@ UKF::UKF() {
   x_ = VectorXd(5);
 
   // initial covariance matrix
+  // To initialize the state covariance matrix P, one option is to start with
+  // the identity matrix. Instead of setting each of the diagonal values to 1,
+  // you can try setting the diagonal values by how much difference you expect 
+  // between the true state and the initialized x state vector (lesson 32)
   P_ = MatrixXd(5, 5);
-  // values taken from course, should be changed
-  P_ <<    0.0043,   -0.0013,    0.0030,   -0.0022,   -0.0020,
-          -0.0013,    0.0077,    0.0011,    0.0071,    0.0060,
-           0.0030,    0.0011,    0.0054,    0.0007,    0.0008,
-          -0.0022,    0.0071,    0.0007,    0.0098,    0.0100,
-          -0.0020,    0.0060,    0.0008,    0.0100,    0.0123;
-  
+  P_ = MatrixXd::Identity(5,5) / 2;
+
   // Process noise standard deviation longitudinal acceleration in m/s^2
-  std_a_ = 12;
+  // The parameter std_a is the standard deviation of linear acceleration! 
+  // Remember from the "CTRV Process Noise Vector" lecture that the linear
+  // acceleration is being modeled as a Gaussian distribution with mean 
+  // zero and standard deviation σ​a​​. In a Gaussian distribution, 
+  // about 95% of your values are within 2*std_aa​​ (lesson 31).
+  std_a_ = 1.;
 
   // Process noise standard deviation yaw acceleration in rad/s^2
-  std_yawdd_ = 1;
+  std_yawdd_ = 0.7;
 
   // Laser measurement noise standard deviation position1 in m
   std_laspx_ = 0.15;
