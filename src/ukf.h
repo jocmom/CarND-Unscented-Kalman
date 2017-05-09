@@ -139,11 +139,36 @@ public:
    */
   void UpdateRadar(MeasurementPackage meas_package);
 
+  /**
+   * Generate augmented Sigma Points
+   */
   Eigen::MatrixXd GenerateSigmaPoints(void);
+
+  /**
+   * Predict Sigma points
+   * @param Xsig_aug augmented sigma points
+   * @param delta_t Time between k and k+1 in s
+   */
   Eigen::MatrixXd PredictSigmaPoints(Eigen::MatrixXd Xsig_aug, double delta_t);
+
+  /**
+   * Predict state mean 
+   */
   void PredictStateMean(void);
+
+  /**
+   * Predict state covariance 
+   */
   void PredictStateCovariance(void);
+
+  /**
+   * Transformation in measurement space and prediction of radar measurement
+   */
   void PredictRadarMeasurement(void);
+
+  /**
+   * Transformation in measurement space and prediction of lidar measurement
+   */
   void PredictLaserMeasurement(void);
 };
 
