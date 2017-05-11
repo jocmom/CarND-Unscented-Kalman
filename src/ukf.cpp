@@ -125,12 +125,6 @@ UKF::~UKF() {}
  * either radar or laser.
  */
 void UKF::ProcessMeasurement(MeasurementPackage measurement_pack) {
-  /**
-  TODO:
-
-  Complete this function! Make sure you switch between lidar and radar
-  measurements.
-  */
   /*****************************************************************************
    *  Initialization
    ****************************************************************************/
@@ -278,9 +272,7 @@ Eigen::MatrixXd UKF::PredictSigmaPoints(Eigen::MatrixXd Xsig_aug, double delta_t
  */
 void UKF::PredictStateMean() {
   x_.fill(0.0);
-  for (int i = 0; i < n_sigma_; i++) {  //iterate over sigma points
-    x_ = x_+ weights_(i) * Xsig_pred_.col(i);
-  }
+  x_ = Xsig_pred_ * weights_;
 }
 
 /**
@@ -388,8 +380,6 @@ void UKF::PredictLaserMeasurement() {
  */
 void UKF::Prediction(double delta_t) {
   /**
-  TODO:
-
   Complete this function! Estimate the object's location. Modify the state
   vector, x_. Predict sigma points, the state, and the state covariance matrix.
   */
@@ -406,8 +396,6 @@ void UKF::Prediction(double delta_t) {
  */
 void UKF::UpdateLidar(MeasurementPackage meas_package) {
   /**
-  TODO:
-
   Complete this function! Use lidar data to update the belief about the object's
   position. Modify the state vector, x_, and covariance, P_.
 
